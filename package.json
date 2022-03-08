@@ -1,0 +1,21 @@
+{
+  "name": "weipai-layer",
+  "private": false,
+  "version": "0.0.6",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "crypto-js": "^4.1.1",
+    "element-plus": "^2.0.5",
+    "qs": "^6.10.3",
+    "vue": "^3.2.25",
+    "vue-router": "^4.0.13"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^2.2.0",
+    "vite": "^2.8.0"
+  }
+}
