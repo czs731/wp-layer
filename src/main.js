@@ -14,4 +14,10 @@ vueApp.use(ElementPlus, { locale : zhCn });
 import wp from "./packages/index.js";
 vueApp.use(wp);
 
+import common from './common/index.js';
+vueApp.use(common);
+
+import api from './common/api.js';
+vueApp.config.globalProperties.$api = api;
+
 vueApp.mount('#app')

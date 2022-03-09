@@ -81,20 +81,16 @@
   <div class="package">
     <div class="package-title">wp-form-upload</div>
     <div class="package-wrap" style="padding: 20px; background:#ffffff;">
-      <wp-form-upload files="http://localhost/service_api/qrcode/9/1720/qrcode_399747.png"></wp-form-upload>
+      <wp-form-upload v-model:files="image" is-button is-del is-self is-server :upload-method="$api.upload_file" :server-method="$api.upload"></wp-form-upload>
     </div>
   </div>
 
 </template>
 
 <script>
-import WpFormRow from "../packages/wp-form-row.vue";
-import WpPageSize from "../packages/wp-pagesize.vue";
-import WpFormLineItem from "../packages/wp-form-line-item.vue";
-import WpFormUpload from "../packages/wp-form-upload.vue";
 export default {
   name: "index",
-  components: {WpFormUpload, WpFormLineItem, WpPageSize, WpFormRow},
+  components: {},
   props: {},
   model: {},
   emits: [],
@@ -102,10 +98,17 @@ export default {
   data() {
     return {
       is_pop : false,
+      image : ['http://localhost/service_api/qrcode/9/1720/qrcode_399747.png'],
     }
   },
   mounted: async function () {
-
+    // try {
+    //   let res = await this.$api.upload('get_list');
+    //   console.log(res);
+    // }catch (e) {
+    //   console.log(e);
+    //   return false;
+    // }
   },
   methods: {
     show_pop : function (){

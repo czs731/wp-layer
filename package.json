@@ -1,18 +1,23 @@
 {
   "name": "weipai-layer",
   "private": false,
-  "version": "0.0.6",
+  "version": "0.0.7",
+  "license": "MIT",
+  "description": "weipai-layer是一个私有项目，只是在平常开发中，一些重复组件使用",
+  "homepage": "https://github.com/czs731/wp-layer",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview"
   },
   "dependencies": {
+    "axios": "^0.26.0",
     "crypto-js": "^4.1.1",
     "element-plus": "^2.0.5",
     "qs": "^6.10.3",
     "vue": "^3.2.25",
-    "vue-router": "^4.0.13"
+    "vue-router": "^4.0.13",
+    "vuedraggable": "^4.1.0"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^2.2.0",
