@@ -225,6 +225,9 @@ const request = {
       } else {
         str_3 = str_1 + access_token;
       }
+      if(this.deBug){
+        console.log(str_3,'str_3');
+      }
       let sign = tools.$md5(str_3);
       let urlData = { port : port, method : method,time :time, sign : sign };
       let urlDataStr = tools.$base64Encode(tools.$dataToJson(urlData));

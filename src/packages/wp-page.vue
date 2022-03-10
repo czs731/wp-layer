@@ -10,7 +10,7 @@
         <slot name="frm"></slot>
       </div>
     </div>
-    <div class="wp-page-wrap" :style="{ backgroundColor : isBack ? backColor : 'rgba(0,0,0,0)', borderRadius: borderRadius+'px', boxShadow : isBack ? '0 1px 2px rgba(150, 150, 150, 0.3)':'none' }">
+    <div class="wp-page-wrap" :style="{ backgroundColor : isBack ? backColor : 'rgba(0,0,0,0)', borderRadius: borderRadius+'px', boxShadow : isBack ? '0 1px 2px rgba(150, 150, 150, 0.3)':'none', padding : pagePadding+'px' }" v-loading="isLoad">
       <div class="wp-page-form-buttons" v-if="$slots.button ||  $slots.form">
         <div class="wp-page-button">
           <slot name="button"></slot>
@@ -36,6 +36,8 @@ export default {
     backColor: { type : String, default : '#ffffff' },
     isBack : { type : Boolean, default : true },
     borderRadius : { type : [String,Number], default : 5 },
+    isLoad : { type : Boolean, default : false },
+    pagePadding : { type : [String,Number], default : 20 },
   },
   model: {},
   emits: [],
@@ -48,7 +50,6 @@ export default {
     setTimeout(()=>{
       if(!this.page_title && this.isRoute){
         let route = this.$route;
-        console.log(route);
         this.page_title = route.name;
       }
     },200);
@@ -62,5 +63,5 @@ export default {
 .wp-page-title { font-size: 26px; padding-bottom: 20px; }
 .wp-page-form-buttons { display: flex; padding-bottom: 20px; }
 .wp-page-flex { flex: 1; }
-.wp-page-wrap { padding: 20px; }
+.wp-page-wrap {  }
 </style>

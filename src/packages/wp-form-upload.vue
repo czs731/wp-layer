@@ -26,7 +26,6 @@
             </div>
           </template>
         </template>
-
       </el-upload>
     </template>
     <template v-if="isServer">
@@ -56,6 +55,7 @@
       </template>
     </template>
   </template>
+  
 
   <template v-if="isButton">
     <template v-if="!isServer">
@@ -66,6 +66,10 @@
     <template v-if="isServer">
       <div class="upload-button" @click="show_server(true)">{{buttonText}}</div>
     </template>
+  </template>
+  
+  <template v-if="tip">
+    <div class="wp-form-upload-tip">{{tip}}</div>
   </template>
 
   <template v-if="!isButton && !isSelf && file_list && !is_list">
@@ -90,9 +94,10 @@
     </div>
   </template>
 
+
   <template v-if="is_list && file_list">
     <div class="upload-items">
-      <vuedraggable v-model="file_list" item-key="id">
+      <draggable v-model="file_list" item-key="id">
         <template #item="{element}">
           <div class="upload-item">
             <img :src="element" alt="">
@@ -101,7 +106,7 @@
             </div>
           </div>
         </template>
-      </vuedraggable>
+      </draggable>
     </div>
   </template>
 
@@ -224,11 +229,10 @@
 </template>
 
 <script>
-import vuedraggable from "vuedraggable";
-import Index from "../views/index.vue";
+import draggable from "vuedraggable/src/vuedraggable.js";
 export default {
   name: "wp-form-upload",
-  components : {Index, vuedraggable },
+  components : {draggable },
   props: {
     isButton : { type : Boolean, default : false },
     buttonText : { type : String, default : '点击上传' },
@@ -241,6 +245,7 @@ export default {
     rules : { type : Object, default : ()=>{return {width : 0, height : 0, minWidth : 0, minHeight : 0, maxWidth : 0, maxHeight : 0, scale : ''}}},
     maxSize : { type : [String,Number], default : 0 },
     isDel : { type : Boolean, default : false },
+    tip : { type : String, default : '' },
   },
   model: {},
   emits: ['update:files'],
@@ -562,6 +567,8 @@ export default {
 .upload-icon img { width: 100%; margin-top: 50%; transform: translateY(-50%); }
 
 .upload-button { height: 32px; line-height: 32px; width: 120px; text-align: center; background: #409EFF; color: #ffffff; border-radius: 5px; font-size: 14px; cursor: pointer; }
+
+.wp-form-upload-tip { padding-top: 10px; font-size: 14px; color: #999999; }
 
 .upload-items { width: 100%; height: auto; }
 .upload-items:after { content: ''; display: table; clear: both; }

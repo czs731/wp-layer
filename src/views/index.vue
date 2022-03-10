@@ -81,7 +81,30 @@
   <div class="package">
     <div class="package-title">wp-form-upload</div>
     <div class="package-wrap" style="padding: 20px; background:#ffffff;">
-      <wp-form-upload v-model:files="image" is-button is-del is-self is-server :upload-method="$api.upload_file" :server-method="$api.upload"></wp-form-upload>
+      <wp-form-upload v-model:files="image" is-button is-del is-self is-server :upload-method="$api.upload_file" :server-method="$api.upload" tip=""></wp-form-upload>
+    </div>
+  </div>
+
+  <div class="package">
+    <div class="package-title">wp-form-mobile</div>
+    <div class="package-wrap" style="padding: 20px; background:#ffffff;">
+      <wp-form-mobile>
+        <template #mobile>
+          <div style="height: 1500px;"></div>
+        </template>
+        <template #form></template>
+      </wp-form-mobile>
+    </div>
+  </div>
+
+  <div class="package">
+    <div class="package-title">option-item</div>
+    <div class="package-wrap" style="padding: 20px; background:#ffffff;">
+      <el-select>
+        <el-option>
+          <option-item icon="icon-homefill" name="home"></option-item>
+        </el-option>
+      </el-select>
     </div>
   </div>
 
