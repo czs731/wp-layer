@@ -23,6 +23,4 @@ vueApp.config.globalProperties.$api = api;
 import './assets/iconfont.css';
 
 
-
-
 vueApp.mount('#app')

@@ -1,4 +1,9 @@
 <template>
+
+  <div class="links">
+    <router-link to="/wp-page">WpPage</router-link>
+  </div>
+
   <div class="package">
     <div class="package-title">wp-page</div>
     <div class="package-wrap">
@@ -81,7 +86,7 @@
   <div class="package">
     <div class="package-title">wp-form-upload</div>
     <div class="package-wrap" style="padding: 20px; background:#ffffff;">
-      <wp-form-upload v-model:files="image" is-button is-del is-self is-server :upload-method="$api.upload_file" :server-method="$api.upload" tip=""></wp-form-upload>
+      <wp-form-upload v-model:files="image"  is-del is-self  :upload-method="$api.upload_file" :server-method="$api.upload" max-size="20000" :rules="{ width : 500 }"></wp-form-upload>
     </div>
   </div>
 
@@ -108,12 +113,21 @@
     </div>
   </div>
 
+  <div class="package">
+    <div class="package-title">wp-qq-map</div>
+    <div class="package-wrap" style="padding: 20px; background:#ffffff;">
+      <el-button type="primary" @click="show_map">打开地图</el-button>
+      <wp-qq-map v-if="is_map" @close="show_map" @submit="get_map"></wp-qq-map>
+    </div>
+  </div>
+
 </template>
 
 <script>
+import WpQqMap from "../packages/wp-qq-map.vue";
 export default {
   name: "index",
-  components: {},
+  components: {WpQqMap},
   props: {},
   model: {},
   emits: [],
@@ -122,6 +136,7 @@ export default {
     return {
       is_pop : false,
       image : ['http://localhost/service_api/qrcode/9/1720/qrcode_399747.png'],
+      is_map : false,
     }
   },
   mounted: async function () {
@@ -136,6 +151,13 @@ export default {
   methods: {
     show_pop : function (){
       this.is_pop = !this.is_pop
+    },
+    show_map : function (){
+      this.is_map = !this.is_map;
+    },
+    get_map : function (e){
+      console.log(e);
+      this.is_map = !this.is_map;
     },
   },
 }

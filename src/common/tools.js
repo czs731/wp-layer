@@ -121,47 +121,50 @@ const Tools = {
     }
     return json;
   },
-  $dataSort : function (data){
-    if(!data){
+  $dataSort: function (data) {
+    if (!data) {
       return '';
     }
-    let query = data.constructor === Object ? {  } : (data.constructor===Array ? [] : '');
+    // let query = data.constructor === Object ? {  } : (data.constructor===Array ? [] : '');
+    let query = Object.prototype.toString.call(data) === '[object Object]' ? {} : (Object.prototype.toString.call(data) === '[object Array]' ? [] : '');
     if (data != null) {
-      if (data.constructor === Object) {
+      if (Object.prototype.toString.call(data) === '[object Object]') {
         let keys = Object.keys(data);
         keys.sort();
-        keys.map((val)=>{
-          if (data[val]==null) {
-            query[val] = data[val];
+        keys.map((val) => {
+          let item = data[val];
+          if (item == null) {
+            query[val] = item;
           } else {
-            if (data[val].constructor === Object) {
-              query[val] = this.$dataSort(data[val]);
-            } else if (data[val].constructor === Array) {
-              query[val] = this.$dataSort(data[val]);
-            }else{
-              query[val] = data[val];
+            if (Object.prototype.toString.call(item) === '[object Object]') {
+              query[val] = this.$dataSort(item);
+            } else if (Object.prototype.toString.call(item) === '[object Array]') {
+              query[val] = this.$dataSort(item);
+            } else {
+              query[val] = item;
             }
           }
         })
-      } else if (data.constructor===Array) {
-        data.map((val,key)=>{
-          if (val == null) {
-            query[key] = val;
+      } else if (Object.prototype.toString.call(data) === '[object Array]') {
+        data.map((val, key) => {
+          let item = val;
+          if (item == null) {
+            query[key] = item;
           } else {
-            if (val.constructor === Object) {
-              query[key] = this.$dataSort(val);
-            } else if (val.constructor === Array) {
-              query[key] = this.$dataSort(val);
-            }else{
-              query[key] = val;
+            if (Object.prototype.toString.call(item) === '[object Object]') {
+              query[key] = this.$dataSort(item);
+            } else if (Object.prototype.toString.call(item) === '[object Array]') {
+              query[key] = this.$dataSort(item);
+            } else {
+              query[key] = item;
             }
           }
         })
-      }else{
+      } else {
         return data;
       }
       return query;
-    }else{
+    } else {
       return data;
     }
   },

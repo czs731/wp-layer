@@ -8,6 +8,7 @@ import wpFormLineItem from "./wp-form-line-item.vue";
 import wpFormUpload from "./wp-form-upload.vue";
 import wpFormMobile from "./wp-form-mobile.vue";
 import optionItem from "./option-item.vue";
+import wpQqMap from "./wp-qq-map.vue";
 
 export default {
   install : function (app) {
@@ -21,5 +22,6 @@ export default {
     app.component(wpFormUpload.name,wpFormUpload)
     app.component(wpFormMobile.name,wpFormMobile)
     app.component(optionItem.name,optionItem)
+    app.component(wpQqMap.name,wpQqMap)
   }
 }

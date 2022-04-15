@@ -2,57 +2,67 @@
   <template v-if="!isButton">
     <template v-if="!isServer">
       <el-upload action="" :accept="accept" :before-upload="upload_check" :http-request="upload_file" :multiple="multiple" :show-file-list="false">
-        <template v-if="is_list">
-          <div class="upload-icon" v-loading="is_upload">
-            <svg t="1646712222660" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2049" width="200" height="200"><path d="M1024 640.192C1024 782.912 919.872 896 787.648 896h-512C123.904 896 0 761.6 0 597.504 0 451.968 94.656 331.52 226.432 302.976 284.16 195.456 391.808 128 512 128c152.32 0 282.112 108.416 323.392 261.12C941.888 413.44 1024 519.04 1024 640.192z m-341.312-139.84L512 314.24 341.312 500.48h341.376z m-213.376 0v256h85.376v-256H469.312z"  p-id="2050"></path></svg>
-          </div>
-        </template>
-        <template v-if="!is_list">
-          <template v-if="isSelf">
-            <template v-if="file_list">
-              <div class="upload-icon" v-loading="is_upload">
-                <img :src="files" alt="">
-              </div>
+        <el-tooltip placement="top">
+          <template #content>
+            <div v-html="notice"></div>
+          </template>
+          <template v-if="is_list">
+            <div class="upload-icon" v-loading="is_upload">
+              <svg t="1646712222660" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2049" width="200" height="200"><path d="M1024 640.192C1024 782.912 919.872 896 787.648 896h-512C123.904 896 0 761.6 0 597.504 0 451.968 94.656 331.52 226.432 302.976 284.16 195.456 391.808 128 512 128c152.32 0 282.112 108.416 323.392 261.12C941.888 413.44 1024 519.04 1024 640.192z m-341.312-139.84L512 314.24 341.312 500.48h341.376z m-213.376 0v256h85.376v-256H469.312z"  p-id="2050"></path></svg>
+            </div>
+          </template>
+          <template v-if="!is_list">
+            <template v-if="isSelf">
+              <template v-if="file_list">
+                <div class="upload-icon" v-loading="is_upload">
+                  <img :src="files" alt="">
+                </div>
+              </template>
+              <template v-if="!file_list">
+                <div class="upload-icon" v-loading="is_upload">
+                  <svg t="1646712222660" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2049" width="200" height="200"><path d="M1024 640.192C1024 782.912 919.872 896 787.648 896h-512C123.904 896 0 761.6 0 597.504 0 451.968 94.656 331.52 226.432 302.976 284.16 195.456 391.808 128 512 128c152.32 0 282.112 108.416 323.392 261.12C941.888 413.44 1024 519.04 1024 640.192z m-341.312-139.84L512 314.24 341.312 500.48h341.376z m-213.376 0v256h85.376v-256H469.312z"  p-id="2050"></path></svg>
+                </div>
+              </template>
             </template>
-            <template v-if="!file_list">
+            <template v-if="!isSelf">
               <div class="upload-icon" v-loading="is_upload">
                 <svg t="1646712222660" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2049" width="200" height="200"><path d="M1024 640.192C1024 782.912 919.872 896 787.648 896h-512C123.904 896 0 761.6 0 597.504 0 451.968 94.656 331.52 226.432 302.976 284.16 195.456 391.808 128 512 128c152.32 0 282.112 108.416 323.392 261.12C941.888 413.44 1024 519.04 1024 640.192z m-341.312-139.84L512 314.24 341.312 500.48h341.376z m-213.376 0v256h85.376v-256H469.312z"  p-id="2050"></path></svg>
               </div>
             </template>
           </template>
-          <template v-if="!isSelf">
-            <div class="upload-icon" v-loading="is_upload">
-              <svg t="1646712222660" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2049" width="200" height="200"><path d="M1024 640.192C1024 782.912 919.872 896 787.648 896h-512C123.904 896 0 761.6 0 597.504 0 451.968 94.656 331.52 226.432 302.976 284.16 195.456 391.808 128 512 128c152.32 0 282.112 108.416 323.392 261.12C941.888 413.44 1024 519.04 1024 640.192z m-341.312-139.84L512 314.24 341.312 500.48h341.376z m-213.376 0v256h85.376v-256H469.312z"  p-id="2050"></path></svg>
-            </div>
-          </template>
-        </template>
+        </el-tooltip>
       </el-upload>
     </template>
     <template v-if="isServer">
-      <template v-if="is_list">
-        <div class="upload-icon" @click="show_server(true)">
-          <svg t="1646712222660" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2049" width="200" height="200"><path d="M1024 640.192C1024 782.912 919.872 896 787.648 896h-512C123.904 896 0 761.6 0 597.504 0 451.968 94.656 331.52 226.432 302.976 284.16 195.456 391.808 128 512 128c152.32 0 282.112 108.416 323.392 261.12C941.888 413.44 1024 519.04 1024 640.192z m-341.312-139.84L512 314.24 341.312 500.48h341.376z m-213.376 0v256h85.376v-256H469.312z"  p-id="2050"></path></svg>
-        </div>
-      </template>
-      <template v-if="!is_list">
-        <template v-if="isSelf">
-          <template v-if="!file_list">
-            <div class="upload-icon" @click="show_server(true)">
-              <svg t="1646712222660" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2049" width="200" height="200"><path d="M1024 640.192C1024 782.912 919.872 896 787.648 896h-512C123.904 896 0 761.6 0 597.504 0 451.968 94.656 331.52 226.432 302.976 284.16 195.456 391.808 128 512 128c152.32 0 282.112 108.416 323.392 261.12C941.888 413.44 1024 519.04 1024 640.192z m-341.312-139.84L512 314.24 341.312 500.48h341.376z m-213.376 0v256h85.376v-256H469.312z"  p-id="2050"></path></svg>
-            </div>
-          </template>
-          <template v-if="file_list">
-            <div class="upload-icon" @click="show_server(true)">
-              <img :src="file_list" alt="">
-            </div>
-          </template>
+      <el-tooltip placement="top">
+        <template #content>
+          <div v-html="notice"></div>
         </template>
-        <template v-if="!isSelf">
+        <template v-if="is_list">
           <div class="upload-icon" @click="show_server(true)">
             <svg t="1646712222660" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2049" width="200" height="200"><path d="M1024 640.192C1024 782.912 919.872 896 787.648 896h-512C123.904 896 0 761.6 0 597.504 0 451.968 94.656 331.52 226.432 302.976 284.16 195.456 391.808 128 512 128c152.32 0 282.112 108.416 323.392 261.12C941.888 413.44 1024 519.04 1024 640.192z m-341.312-139.84L512 314.24 341.312 500.48h341.376z m-213.376 0v256h85.376v-256H469.312z"  p-id="2050"></path></svg>
           </div>
         </template>
-      </template>
+        <template v-if="!is_list">
+          <template v-if="isSelf">
+            <template v-if="!file_list">
+              <div class="upload-icon" @click="show_server(true)">
+                <svg t="1646712222660" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2049" width="200" height="200"><path d="M1024 640.192C1024 782.912 919.872 896 787.648 896h-512C123.904 896 0 761.6 0 597.504 0 451.968 94.656 331.52 226.432 302.976 284.16 195.456 391.808 128 512 128c152.32 0 282.112 108.416 323.392 261.12C941.888 413.44 1024 519.04 1024 640.192z m-341.312-139.84L512 314.24 341.312 500.48h341.376z m-213.376 0v256h85.376v-256H469.312z"  p-id="2050"></path></svg>
+              </div>
+            </template>
+            <template v-if="file_list">
+              <div class="upload-icon" @click="show_server(true)">
+                <img :src="file_list" alt="">
+              </div>
+            </template>
+          </template>
+          <template v-if="!isSelf">
+            <div class="upload-icon" @click="show_server(true)">
+              <svg t="1646712222660" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2049" width="200" height="200"><path d="M1024 640.192C1024 782.912 919.872 896 787.648 896h-512C123.904 896 0 761.6 0 597.504 0 451.968 94.656 331.52 226.432 302.976 284.16 195.456 391.808 128 512 128c152.32 0 282.112 108.416 323.392 261.12C941.888 413.44 1024 519.04 1024 640.192z m-341.312-139.84L512 314.24 341.312 500.48h341.376z m-213.376 0v256h85.376v-256H469.312z"  p-id="2050"></path></svg>
+            </div>
+          </template>
+        </template>
+      </el-tooltip>
     </template>
   </template>
   
@@ -60,17 +70,24 @@
   <template v-if="isButton">
     <template v-if="!isServer">
       <el-upload action="" :accept="accept" :before-upload="upload_check" :http-request="upload_file" :multiple="multiple" :show-file-list="false">
-        <div class="upload-button" v-loading="is_upload">{{buttonText}}</div>
+        <el-tooltip placement="top">
+          <template #content>
+            <div v-html="notice"></div>
+          </template>
+          <div class="upload-button" v-loading="is_upload">{{buttonText}}</div>
+        </el-tooltip>
       </el-upload>
     </template>
     <template v-if="isServer">
-      <div class="upload-button" @click="show_server(true)">{{buttonText}}</div>
+      <el-tooltip placement="top">
+        <template #content>
+          <div v-html="notice"></div>
+        </template>
+        <div class="upload-button" @click="show_server(true)">{{buttonText}}</div>
+      </el-tooltip>
     </template>
   </template>
-  
-  <template v-if="tip">
-    <div class="wp-form-upload-tip">{{tip}}</div>
-  </template>
+
 
   <template v-if="!isButton && !isSelf && file_list && !is_list">
     <div class="upload-items">
@@ -266,7 +283,8 @@ export default {
       wrap_show : '',
       is_submit : false,
       is_file : false,
-      file_name : ''
+      file_name : '',
+      notice : '点击上传',
     }
   },
   mounted: async function () {
@@ -285,6 +303,30 @@ export default {
         }
         if(this.isButton){
           this.is_self = false;
+        }
+        if(this.maxSize){
+          this.notice = this.notice + "<br> 最大上传大小"+ this.maxSize+'KB';
+        }
+        if(this.rules.width){
+          this.notice = this.notice + '<br>宽必须 '+ this.rules.width+'px';
+        }
+        if(this.rules.height){
+          this.notice = this.notice + '<br>高必须 '+ this.rules.height+'px';
+        }
+        if(this.rules.minWidth){
+          this.notice = this.notice + '<br>最小宽 '+ this.rules.minWidth+'px';
+        }
+        if(this.rules.minHeight){
+          this.notice = this.notice + '<br>最小高 '+ this.rules.minHeight+'px';
+        }
+        if(this.rules.maxWidth){
+          this.notice = this.notice + '<br>最大宽 '+ this.rules.maxWidth+'px';
+        }
+        if(this.rules.maxHeight){
+          this.notice = this.notice + '<br>最大高 '+ this.rules.maxHeight+'px';
+        }
+        if(this.rules.scale){
+          this.notice = this.notice + '<br>宽高比 '+ this.rules.scale;
         }
       },200);
     }catch (e) {
@@ -568,7 +610,7 @@ export default {
 
 .upload-button { height: 32px; line-height: 32px; width: 120px; text-align: center; background: #409EFF; color: #ffffff; border-radius: 5px; font-size: 14px; cursor: pointer; }
 
-.wp-form-upload-tip { padding-top: 10px; font-size: 14px; color: #999999; }
+.wp-form-upload-tip { padding-top: 10px; font-size: 12px; color: #999999; }
 
 .upload-items { width: 100%; height: auto; }
 .upload-items:after { content: ''; display: table; clear: both; }
@@ -580,9 +622,9 @@ export default {
 .upload-item:hover .upload-item-del { background: #409EFF; }
 .upload-item:hover .upload-item-del svg { fill: #ffffff; }
 
-.wp-upload-server-mask { position: fixed; z-index: 999; left: 0; right: 0; top: 0; bottom: 0; background: rgba(0,0,0,0.2);opacity: 0; transition: opacity 0.5s;  }
+.wp-upload-server-mask { position: fixed; z-index: 99999999; left: 0; right: 0; top: 0; bottom: 0; background: rgba(0,0,0,0.2);opacity: 0; transition: opacity 0.5s;  }
 .mask-show { opacity: 1; }
-.wp-upload-server-wrap { position: fixed; z-index: 1000; left: 50%; top: 50%; transform: translateX(-50%) translateY(-20%); overflow: hidden; background: #ffffff; border-radius: 5px; box-shadow: 0 0 10px #999999; width: 900px;opacity: 0; transition: all 0.5s;  }
+.wp-upload-server-wrap { position: fixed; z-index: 100000000; left: 50%; top: 50%; transform: translateX(-50%) translateY(-20%); overflow: hidden; background: #ffffff; border-radius: 5px; box-shadow: 0 0 10px #999999; width: 900px;opacity: 0; transition: all 0.5s;  }
 .wrap-show { opacity: 1; transform: translateX(-50%) translateY(-50%);  }
 .wp-upload-server-title-close { padding: 15px 20px; height: 20px; line-height: 20px; display: flex; border-bottom: 1px solid #dcdfe6; }
 .wp-upload-server-title { color: #666666; flex: 1; }

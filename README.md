@@ -1,5 +1,6 @@
 # WeiPaiLayer
-请使用vue3  vue2不保证可兼容
+
+请使用vue3 vue2不保证可兼容
 
 ## 使用
 
@@ -17,16 +18,37 @@
 
 npm install weipai-layer
 
-main.js 引入
-
-im
-
-使用插件
-
-
-
-
 ## wp-wrap
+```vue
+<wp-wrap>
+<template #menu>菜单</template>
+<template>内容</template>
+</wp-wrap>
+```
+
+### Props
+
+minWidth : { type : [String,Number], default : 1000 },
+
+minHeight : { type : [String,Number], default : 900 },
+
+paddingTop : { type : [String,Number], default : 0 },
+
+paddingRight : { type : [String,Number], default : 0 },
+
+paddingLeft : { type : [String,Number], default : 0 },
+
+paddingBottom : { type : [String,Number], default : 0 },
+
+borderColor : { type : String, default : '#dcdfe6' },
+
+isMenu : { type : Boolean, default : true },
+
+menuWidth : { type : [String,Number], default : 180 },
+
+containerLeft : { type : [String,Number], default : 30 },
+
+
 ### props
 
 | 属性     | 类型            | 默认值 | 
@@ -41,10 +63,14 @@ im
 |menuRight| string number | 30 |
 
 ### slot
+
 * menu
 * default
 
 ## wp-page
+
 ### props
-#### 
+
+####  
+
 ### 参数

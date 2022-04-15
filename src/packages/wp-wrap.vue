@@ -1,9 +1,9 @@
 <template>
-  <div class="wp-wrap" :style="{ paddingBottom: paddingBottom+'px', paddingLeft: paddingLeft+'px', paddingTop: paddingTop+'px',paddingRight: paddingRight+'px', minWidth: minWidth+'px' }">
+  <div class="wp-wrap" :style="{ paddingBottom: paddingBottom+'px', paddingLeft: paddingLeft+'px', paddingTop: paddingTop+'px',paddingRight: paddingRight+'px', minWidth: minWidth+'px', minHeight : minHeight+'px' }">
     <div class="wp-wrap-menu" :style="{ width : menuWidth+'px', borderColor: borderColor }" v-if="$slots.menu && isMenu">
       <slot name="menu"></slot>
     </div>
-    <div class="wp-wrap-container" :style="{ paddingLeft : containerLeft+'px' }">
+    <div class="wp-wrap-container" :style="{ paddingLeft : containerLeft+'px', paddingRight : containerLeft+'px'}">
       <slot></slot>
     </div>
   </div>
@@ -14,6 +14,7 @@ export default {
   name: "wp-wrap",
   props: {
     minWidth : { type : [String,Number], default : 1000 },
+    minHeight : { type : [String,Number], default : 900 },
     paddingTop : { type : [String,Number], default : 0 },
     paddingRight : { type : [String,Number], default : 0 },
     paddingLeft : { type : [String,Number], default : 0 },
